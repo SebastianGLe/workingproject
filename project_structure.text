@@ -1,0 +1,50 @@
+- .env
+- client
+  - .gitignore
+  - package-lock.json
+  - package.json
+  - public
+    - background.jpg
+    - favicon.ico
+    - index.html
+    - logo192.png
+    - logo512.png
+    - manifest.json
+    - robots.txt
+  - README.md
+  - src
+    - App.css
+    - App.js
+    - App.test.js
+    - components
+      - assets
+        - chipotleBowl.jpg
+        - creamyVeganPasta.jpg
+        - garlicButterSteak.jpg
+        - hummusBowl.jpg
+        - logo.png
+        - veganBurger.jpg
+        - vegLasagna.jpg
+      - HomePage.css
+      - HomePage.js
+      - LandingPage.css
+      - LandingPage.js
+      - Login.js
+      - Register.js
+    - index.css
+    - index.js
+    - logo.svg
+    - reportWebVitals.js
+    - setupTests.js
+- docs
+- package-lock.json
+- package.json
+- server
+  - config
+  - controllers
+  - middleware
+  - models
+    - User.js
+  - routes
+    - auth.js
+- server.js

@@ -28,6 +28,7 @@ router.post('/register', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        username: user.username,
       },
     };
 
@@ -46,7 +47,6 @@ router.post('/login', async (req, res) => {
   const { identifier, password } = req.body;
 
   try {
-    // Find user by email or username
     let user = await User.findOne({ $or: [{ email: identifier }, { username: identifier }] });
     if (!user) {
       return res.status(400).json({ msg: 'Invalid credentials' });
@@ -60,6 +60,7 @@ router.post('/login', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        username: user.username,
       },
     };
 
@@ -73,6 +74,21 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Get user details
+router.get('/me', async (req, res) => {
+  try {
+    const token = req.headers['x-auth-token'];
+    if (!token) {
+      return res.status(401).json({ msg: 'No token, authorization denied' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
-
-
